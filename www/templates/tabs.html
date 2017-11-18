@@ -1,0 +1,29 @@
+<ion-nav-bar class="bar-stable">
+  <ion-nav-back-button class="button-icon ion-chevron-left"> 
+  </ion-nav-back-button>
+</ion-nav-bar>
+
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive tab-padding">
+
+  <!-- Dashboard Tab -->
+  <ion-tab title="Gimnasios" class="icon-padding" icon-off="ion-ios-world-outline" icon-on="ion-ios-world" href="#/tab/gyms">
+    <ion-nav-view name="gyms-tab"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="Suplementos" class="icon-padding" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/supps">
+    <ion-nav-view name="tab-supps"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="Carrito" class="icon-padding" icon-off="ion-ios-cart-outline" icon-on="ion-ios-cart" href="#/tab/cart">
+    <ion-nav-view name="tab-cart"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>
