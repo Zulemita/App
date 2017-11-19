@@ -16,11 +16,16 @@
           <ion-item class="item-accordion"
                     ng-repeat="item in group.items"
                     ng-show="isGroupShown(group)">
-		<img ng-src="{{item.img}}" style="width:20%;height:20%;"/><br/>
+<div class="row">
+  <div class="col-md-4">
+		<img ng-src="{{item.img}}" style="width:80%;height:80%;"/></div>
+  <div class="col-md-4">
             Marca: {{item.marca}}<br/>
             Peso: {{item.peso}}
-
         <input type="number" name="quantity" value="0" min="0" max="5">
+</div>
+</div>
+
           </ion-item>
         </div>
       </ion-list>
