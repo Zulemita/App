@@ -3,7 +3,27 @@
     <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
     </button>
   </ion-nav-buttons>
-  <ion-content>
-    
-  </ion-content>
+ <ion-content>
+      <ion-list>
+        <div ng-repeat="group in groups">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{group.name}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="item in group.items"
+                    ng-show="isGroupShown(group)">
+		<img ng-src="{{item.img}}" style="width:20%;height:20%;"/><br/>
+            Marca: {{item.marca}}<br/>
+            Peso: {{item.peso}}
+
+        <input type="number" name="quantity" value="0" min="0" max="5">
+          </ion-item>
+        </div>
+      </ion-list>
+
+    </ion-content>
 </ion-view>
