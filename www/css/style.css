@@ -17,3 +17,36 @@
     width: 100%;
     height: 100%;
 }
+
+.gym-img {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+
+.gym-header1 {
+	padding-top: 30px;
+	color: black;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.gym-header2 {
+	color: gray;
+	padding-bottom: 5px;
+}
+
+.gym-options {
+	color: black;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 330%;
+}
+
+.gym-options-btn {
+	float: right;
+	height: 10%;
+	font-size: 25px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}

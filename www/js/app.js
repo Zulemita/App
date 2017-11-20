@@ -58,15 +58,56 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     }
   })
 
-  .state('tab.singleGym', {
-    url: '/singleGym',
+  .state('tab.McGym', {
+    url: '/McGym',
     views: {
       'gyms-tab': {
-        templateUrl: 'templates/tab-singleGym.html',
+        templateUrl: 'templates/gyms/tab-McGym.html',
         controller: 'SingleGymCtrl'
       }
     }
   })
+
+  .state('tab.GymFiuba', {
+    url: '/GymFiuba',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/gyms/tab-GymFiuba.html',
+        controller: 'SingleGymCtrl'
+      }
+    }
+  })
+
+  .state('tab.GymBelgrano', {
+    url: '/GymBelgrano',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/gyms/tab-GymBelgrano.html',
+        controller: 'SingleGymCtrl'
+      }
+    }
+  })
+
+  .state('tab.GymIndep', {
+    url: '/GymIndep',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/gyms/tab-GymIndep.html',
+        controller: 'SingleGymCtrl'
+      }
+    }
+  })
+
+  .state('tab.GymST', {
+    url: '/GymST',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/gyms/tab-GymST.html',
+        controller: 'SingleGymCtrl'
+      }
+    }
+  })
+
 
   .state('tab.supps', {
       url: '/supps',
