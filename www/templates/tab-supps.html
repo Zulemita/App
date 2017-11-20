@@ -17,15 +17,18 @@
                     ng-repeat="item in group.items"
                     ng-show="isGroupShown(group)">
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
 		<img ng-src="{{item.img}}" style="width:80%;height:80%;"/></div>
   <div class="col-md-4">
             Marca: {{item.marca}}<br/>
-            Peso: {{item.peso}}
-        <input type="number" name="quantity" value="0" min="0" max="5">
+            Peso: {{item.peso}}<br/>
+	    Precio: ${{item.precio}}
 </div>
 </div>
 
+  <div class="col-md-2">
+<a  ng-click="addToCart(item.id,item.img,item.marca,item.precio)" class="button  button-balanced button-clear   icon ion-android-cart">  </a> 
+  </div>
           </ion-item>
         </div>
       </ion-list>
