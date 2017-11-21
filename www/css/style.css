@@ -26,21 +26,22 @@
 
 .gym-header1 {
 	padding-top: 30px;
-	color: black;
+	color: rgb(68, 68, 68);
+	font-style: italic;
 	font-size: 20px;
+	font-weight: bold;
+	line-height: 130%;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
 .gym-header2 {
 	color: gray;
-	padding-bottom: 5px;
+	font-size: 16px;
 }
 
-.gym-options {
-	color: black;
-	font-size: 16px;
-	font-family: Arial, Helvetica, sans-serif;
-	line-height: 330%;
+.gym-titles {
+	padding: 10px;
+	padding-bottom: 0px;
 }
 
 .gym-options-btn {
@@ -49,4 +50,29 @@
 	font-size: 25px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
+}
+
+.background {
+	background-color: #f8f8f8;
+}
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
+.expand-item {
+  position: relative;
+  width: 100%;
+  max-height: 22px;
+  transition: max-height 0.1s ease-out;
+  overflow: hidden;
+}
+
+.expand-item.active {
+  max-height: 250px;
+  transition: max-height 0.3s ease-out;
 }

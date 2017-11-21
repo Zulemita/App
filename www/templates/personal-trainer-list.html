@@ -1,0 +1,23 @@
+<ion-view view-title="Personal Trainer">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <div ng-repeat="trainer in trainers">
+        <ion-item class="item-avatar"
+                  ng-click="addPersonal(trainer)">
+          <img ng-src={{trainer.profileImage}} />
+          <h2>{{trainer.name}}</h2>
+          <p><strong>Edad:</strong>{{' ' + trainer.age}}</p>
+          <p><strong>Especialidad:</strong>{{' ' + trainer.speciality}}</p>
+          <p><strong>Precio:</strong>{{' $' + trainer.price + ' la clase'}}</p>
+        </ion-item>
+      </div>
+    </ion-list>
+    <button class="button button-block button-balanced" ng-click="goToClothes()">
+      Continuar
+    </button>
+  </ion-content>
+</ion-view>

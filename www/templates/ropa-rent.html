@@ -16,23 +16,26 @@
           <ion-item class="item-accordion"
                     ng-repeat="item in group.items"
                     ng-show="isGroupShown(group)">
-            <div class="row">
-              <div class="col-md-6">
-                <img ng-src="{{item.img}}" style="width:80%;height:80%;"/></div>
-              <div class="col-md-4">
-                        {{item.name}}               
-                        Marca: {{item.marca}}<br/>
-                        Precio: ${{item.precio}}
-            </div>
-            </div>
-
-              <div class="col-md-2">
-                <a  ng-click="showConfirm($event,{{item.name}},{{item.f}})" 
-                class="button  button-balanced button-clear icon ion-android-cart">  </a> 
+            <div class="row" ng-click="showConfirm($event,item)">
+              <div class="col-md-6" >
+                <img ng-src="{{item.img}}" style="width:80%;height:80%;"/>
               </div>
+              <div class="col-md-4">
+                <b>{{item.name}}</b><br/>               
+                Marca: {{item.marca}}<br/>
+                Precio: ${{item.precio}}
+               </div>
+            </div>
           </ion-item>
         </div>
       </ion-list>
-      <md-button> Continue </md-button>
+      <ion-item style="text-align: center;">
+        <button class="button icon-only ion-ios-information-outline button-balanced" ng-click="showRented()">
+          Total: ${{totalAlquilados}} 
+        </button>
+      </ion-item>
+      <button class="button button-block button-balanced" ng-click="continue()">
+        Continuar
+      </button>
     </ion-content>
 </ion-view>

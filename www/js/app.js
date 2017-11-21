@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('gym2go', ['ionic', 'gym2go.controllers', 'gym2go.services', 'ngCordova', 'ngMap'])
+var app = angular.module('gym2go', ['ionic', 'gym2go.controllers', 'gym2go.services', 'ngCordova', 'ngMap', 'ionic-datepicker'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -107,7 +107,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     }
   })
-
+  .state('tab.personalTrainerList', {
+    url: '/personal',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/personal-trainer-list.html',
+        controller: 'PersonalCtrl'
+      }
+    }
+  })
 
   .state('tab.supps', {
       url: '/supps',
@@ -132,8 +140,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   .state('tab.clothes', {
     url: '/clothes',
     views: {
-      'ropa-tab': {
-        templateUrl: 'templates/tab-ropa.html',
+      'gyms-tab': {
+        templateUrl: 'templates/ropa-rent.html',
         controller: 'RopaCtrl'
       }
     }
@@ -146,84 +154,5 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 app.controller('GymsCtrl', function($scope, $state, $cordovaGeolocation) {
-  /*$ngMap.getMap().then(function(map) {
-    console.log(map.getCenter());
-    console.log('markers', map.markers);
-    console.log('shapes', map.shapes);
-  });*/
-  /*var gyms = [
-    { name: 'Gym1', dir: 'Paseo colonn 720', latitude : -34.616321, longitude: -58.368526 },
-    { name: 'Gym2', dir: 'Paseo colonn 910', latitude : -34.618634, longitude: -58.369471 }
-  ]
-  var personMarker = {
-    url: "../img/person-marker.png",
-    size: new google.maps.Size(626, 626),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(0, 313),
-    scaledSize: new google.maps.Size(50, 50)
-  }
 
-  var gymMarker = {
-    url: "./../img/gym-marker.png",
-    size: new google.maps.Size(227, 205),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(113, 205),
-    scaledSize: new google.maps.Size(50, 50)
-  }
-
-  function makeMarker(map, position, animation, image )
-  {
-    return new google.maps.Marker({
-      map: map,
-      animation: google.maps.Animation.DROP,
-      position: position,
-      icon: image
-    }); 
-  }
-
-  var markers = []
-  var infoPositons = []
-  var yourPosition;
-  function startMap( latLng, startPosition )
-  { 
-      var mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-  
-      $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  
-      google.maps.event.addListenerOnce($scope.map, 'idle', function(){
-          if( startPosition )
-          {
-            yourPosition = makeMarker($scope.map,latLng,personMarker);  
-          }
-        
-          for ( var i = 0; i < gyms.length; i++ )
-          {
-            var gym = gyms[i];
-            var marker = makeMarker($scope.map,{lat: gym.latitude, lng: gym.longitude},gymMarker);
-            markers.push(marker)
-            var infoWindow = new google.maps.InfoWindow({
-              content: gym.name + ": " + gym.dir
-            });
-
-            infoPositons.push(infoWindow);
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open($scope.map, marker);
-            });
-          }      
-      });
-  }
-  var options = {timeout: 10000, enableHighAccuracy: true};
-  
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    startMap(latLng,true)
-  }, function(error){
-    var latLng = new google.maps.LatLng(-34.617751,-58.367862 );
-    startMap(latLng,true)
-  });*/
 });
