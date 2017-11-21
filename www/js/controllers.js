@@ -150,6 +150,32 @@ angular.module('gym2go.controllers', [])
     $scope.goToPersonalTrainerList = function () {
       $state.go("tab.personalTrainerList")
     }
+
+    $scope.activities = [
+      {
+        name: "Pase Gimnasio",
+        price: "$50"
+      },
+      {
+        name: "Clase MMA",
+        price: "$30"
+      },
+      {
+        name: "Clase Zumba",
+        price: "$20"
+      }
+    ];
+
+    $scope.toggleActivity = function (activity) {
+      if ($scope.isActivityShown(activity)) {
+        $scope.shownActivity = null;
+      } else {
+        $scope.shownActivity = activity;
+      }
+    };
+    $scope.isActivityShown = function (activity) {
+      return $scope.shownActivity === activity;
+    };
   })
 
   //Personal Trainers
