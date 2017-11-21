@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('gym2go', ['ionic', 'gym2go.controllers', 'gym2go.services', 'ngCordova', 'ngMap'])
+var app = angular.module('gym2go', ['ionic', 'gym2go.controllers', 'gym2go.services', 'ngCordova', 'ngMap', 'ionic-datepicker'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

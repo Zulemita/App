@@ -17,27 +17,27 @@
                   ng-class="{active: isActivityShown(activity)}">
           <i class="icon" ng-class="isActivityShown(activity) ? 'ion-minus' : 'ion-plus'"></i>
           &nbsp;
-          {{activity.name}}
+          {{activity.name}} ({{activity.price}})
         </ion-item>
         <ion-item class="item-accordion"
                   ng-show="isActivityShown(activity)">
           <div class="row">
             <div class="col">
-              <ion-label><b>Precio:</b> {{activity.price}}<ion-label>
-              <ion-label><b>Fecha:</b></ion-label>
-              <input type="date">
+              <ion-label ng-if="selectedDate"><b>{{selectedDate}}</b></ion-label>
+              <button class="button icon-left ion-ios-cart button-balanced" ng-click="openDatePicker()">  Elegir fecha
+              </button>
               <ion-label><b>Hora:</b></ion-label>
               <input type="time">
             </div>
             <div class="col">
-              <button class="button icon-left ion-ios-cart button-balanced column-right">  Comprar
+              <button class="button icon-left ion-ios-cart button-balanced column-right" ng-click="addActivity(activity)">  Comprar
               </button>
             </div>
           </div>
         </ion-item>
       </div>
     </ion-list>
-    <button class="button button-full button-balanced">
+    <button class="button button-full button-balanced" ng-click="goToPersonalTrainerList()">
       Continuar
     </button>
   </ion-content>

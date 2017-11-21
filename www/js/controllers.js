@@ -142,7 +142,7 @@ angular.module('gym2go.controllers', [])
     };
   })
 
-  .controller('SingleGymCtrl', function ($scope, $state) {
+  .controller('SingleGymCtrl', function ($scope, $state, $ionicPopup, ionicDatePicker) {
     $scope.goBack = function () {
       $state.go("tab.gyms")
     };
@@ -176,6 +176,49 @@ angular.module('gym2go.controllers', [])
     $scope.isActivityShown = function (activity) {
       return $scope.shownActivity === activity;
     };
+
+    $scope.addActivity = function (activity) {
+      $ionicPopup.confirm({
+        title: 'Confirmar selección',
+        template: '<div><p>' + activity.name + '</p><strong>Precio: $' + activity.price + '</strong></div>',
+        okText: 'Continuar',
+        cancelText: 'Cancelar'
+      })
+      .then(function(confirmed) {
+        if (confirmed) {
+          // TODO - Add redirection to clothes selection screen
+          //$state.go(tab.clothes)
+        }
+      })
+    };
+
+    var ipObj1 = {
+      callback: function (val) {  //Mandatory 
+        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+        $scope.selectedDate = new Date(val);
+      },
+      disabledDates: [            //Optional 
+        new Date(2016, 2, 16),
+        new Date(2015, 3, 16),
+        new Date(2015, 4, 16),
+        new Date(2015, 5, 16),
+        new Date('Wednesday, August 12, 2015'),
+        new Date("08-16-2016"),
+        new Date(1439676000000)
+      ],
+      from: new Date(2012, 1, 1), //Optional 
+      to: new Date(2016, 10, 30), //Optional 
+      inputDate: new Date(),      //Optional 
+      mondayFirst: true,          //Optional 
+      disableWeekdays: [0],       //Optional 
+      closeOnSelect: false,       //Optional 
+      templateType: 'popup'       //Optional 
+    };
+ 
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(ipObj1);
+    };
+
   })
 
   //Personal Trainers
