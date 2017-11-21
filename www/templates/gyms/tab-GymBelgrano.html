@@ -3,32 +3,42 @@
     <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
     </button>
   </ion-nav-buttons>
-  <ion-content class="padding">
-  	<a class="gym-header1">Gym Belgrano</a>
-  	<br>
-  	<a class="gym-header2">Gimnasio</a>
+  <ion-content class="background">
+    <div class="gym-titles">
+      <a class="gym-header1">Gym Belgrano</a>
+      <br>
+      <a class="gym-header2">Gimnasio</a>
+    </div>
     <img class="gym-img" src="../../img/gym-belgrano.png" />
-    <a class="gym-options">Pase Gimnasio ($45)</a>
-    <button class="button button-outline button-positive gym-options-btn">
-  		+
-	</button>
-    <br>
-    <a class="gym-options">Clase MMA ($30)</a>
-    <button class="button button-outline button-positive gym-options-btn">
-  		+
-	</button>
-    <br>
-    <a class="gym-options">Clase Zumba ($25)</a>
-    <button class="button button-outline button-positive gym-options-btn">
-  		+
-	</button>
-    <br>
-    <a class="gym-options">Clase Spinning ($30)</a>
-    <button class="button button-outline button-positive gym-options-btn">
-  		+
-	</button>
-    <button class="button button-block button-balanced" ng-click="goToPersonalTrainerList()">
-  		Continuar
-	</button>
+  	<ion-list>
+      <div ng-repeat="activity in activities">
+        <ion-item class="item-stable"
+                  ng-click="toggleActivity(activity)"
+                  ng-class="{active: isActivityShown(activity)}">
+          <i class="icon" ng-class="isActivityShown(activity) ? 'ion-minus' : 'ion-plus'"></i>
+          &nbsp;
+          {{activity.name}}
+        </ion-item>
+        <ion-item class="item-accordion"
+                  ng-show="isActivityShown(activity)">
+          <div class="row">
+            <div class="col">
+              <ion-label><b>Precio:</b> {{activity.price}}<ion-label>
+              <ion-label><b>Fecha:</b></ion-label>
+              <input type="date">
+              <ion-label><b>Hora:</b></ion-label>
+              <input type="time">
+            </div>
+            <div class="col">
+              <button class="button icon-left ion-ios-cart button-balanced column-right">  Comprar
+              </button>
+            </div>
+          </div>
+        </ion-item>
+      </div>
+    </ion-list>
+    <button class="button button-full button-balanced">
+      Continuar
+    </button>
   </ion-content>
 </ion-view>
