@@ -107,7 +107,15 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
     }
   })
-
+  .state('tab.personalTrainerList', {
+    url: '/personal',
+    views: {
+      'gyms-tab': {
+        templateUrl: 'templates/personal-trainer-list.html',
+        controller: 'PersonalCtrl'
+      }
+    }
+  })
 
   .state('tab.supps', {
       url: '/supps',
@@ -167,28 +175,28 @@ app.controller('GymsCtrl', function($scope, $state, $cordovaGeolocation) {
       animation: google.maps.Animation.DROP,
       position: position,
       icon: image
-    }); 
+    });
   }
 
   var markers = []
   var infoPositons = []
   var yourPosition;
   function startMap( latLng, startPosition )
-  { 
+  {
       var mapOptions = {
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-  
+
       $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  
+
       google.maps.event.addListenerOnce($scope.map, 'idle', function(){
           if( startPosition )
           {
-            yourPosition = makeMarker($scope.map,latLng,personMarker);  
+            yourPosition = makeMarker($scope.map,latLng,personMarker);
           }
-        
+
           for ( var i = 0; i < gyms.length; i++ )
           {
             var gym = gyms[i];
@@ -203,11 +211,11 @@ app.controller('GymsCtrl', function($scope, $state, $cordovaGeolocation) {
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open($scope.map, marker);
             });
-          }      
+          }
       });
   }
   var options = {timeout: 10000, enableHighAccuracy: true};
-  
+
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     startMap(latLng,true)
