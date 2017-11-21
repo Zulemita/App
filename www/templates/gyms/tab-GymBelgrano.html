@@ -23,22 +23,31 @@
                   ng-show="isActivityShown(activity)">
           <div class="row">
             <div class="col">
-              <ion-label ng-if="selectedDate"><b>{{selectedDate}}</b></ion-label>
-              <button class="button icon-left ion-ios-cart button-balanced" ng-click="openDatePicker()">  Elegir fecha
-              </button>
-              <ion-label><b>Hora:</b></ion-label>
-              <input type="time">
+              <a class="button button-outline icon-left ion-calendar button-dark float-left" ng-click="openDatePicker()">Fecha</a>
             </div>
             <div class="col">
-              <button class="button icon-left ion-ios-cart button-balanced column-right" ng-click="addActivity(activity)">  Comprar
+              <ion-label class="float-right" ng-if="selectedDate"><b>{{selectedDate}}</b></ion-label>
+            </div>
+          </div>
+          <div class="padding">
+            <label class="item item-input item-select">
+            <div class="input-label">
+              <b>Hora:</b>
+            </div>
+            <select name="hora">
+              <option>16:00</option>
+              <option selected>18:30</option>
+              <option>19:00</option>
+            </select>
+            </label>
+          </div>
+            <div class="col">
+              <button class="button icon-left ion-ios-cart button-balanced float-right" ng-click="addActivity(activity)">  Comprar
               </button>
             </div>
           </div>
         </ion-item>
       </div>
     </ion-list>
-    <button class="button button-full button-balanced" ng-click="goToPersonalTrainerList()">
-      Continuar
-    </button>
   </ion-content>
 </ion-view>

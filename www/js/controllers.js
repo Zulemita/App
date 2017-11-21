@@ -164,6 +164,7 @@ angular.module('gym2go.controllers', [])
         name: "Clase Zumba",
         price: "$20"
       }
+
     ];
 
     $scope.toggleActivity = function (activity) {
@@ -180,14 +181,13 @@ angular.module('gym2go.controllers', [])
     $scope.addActivity = function (activity) {
       $ionicPopup.confirm({
         title: 'Confirmar selección',
-        template: '<div><p>' + activity.name + '</p><strong>Precio: $' + activity.price + '</strong></div>',
+        template: '<div><p><strong>' + activity.name + '</strong></p>Precio: ' + activity.price + '<br>Fecha: ' + $scope.selectedDate + '<br>Hora: 19:00hs</div>',
         okText: 'Continuar',
         cancelText: 'Cancelar'
       })
       .then(function(confirmed) {
         if (confirmed) {
-          // TODO - Add redirection to clothes selection screen
-          //$state.go(tab.clothes)
+          $scope.goToPersonalTrainerList();
         }
       })
     };
@@ -195,24 +195,24 @@ angular.module('gym2go.controllers', [])
     var ipObj1 = {
       callback: function (val) {  //Mandatory 
         console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-        $scope.selectedDate = new Date(val);
+        var date = new Date(val);
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        $scope.selectedDate = day+'/'+month+'/'+year;;
       },
-      disabledDates: [            //Optional 
-        new Date(2016, 2, 16),
-        new Date(2015, 3, 16),
-        new Date(2015, 4, 16),
-        new Date(2015, 5, 16),
-        new Date('Wednesday, August 12, 2015'),
-        new Date("08-16-2016"),
-        new Date(1439676000000)
-      ],
-      from: new Date(2012, 1, 1), //Optional 
-      to: new Date(2016, 10, 30), //Optional 
+      from: new Date(2017, 10, 23), //Optional 
+      to: new Date(2019, 10, 30), //Optional 
       inputDate: new Date(),      //Optional 
+      titleLabel: 'Select a Date',
       mondayFirst: true,          //Optional 
       disableWeekdays: [0],       //Optional 
       closeOnSelect: false,       //Optional 
-      templateType: 'popup'       //Optional 
+      templateType: 'popup',
+      setLabel: 'Elegir',
+      closeLabel: 'Cerrar'
     };
  
     $scope.openDatePicker = function(){
