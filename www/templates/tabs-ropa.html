@@ -5,7 +5,7 @@
   </ion-nav-buttons>
  <ion-content>
       <ion-list>
-        <div ng-repeat="group in groups">
+        <div id="listItems" ng-repeat="group in groups">
           <ion-item class="item-stable"
                     ng-click="toggleGroup(group)"
                     ng-class="{active: isGroupShown(group)}">
@@ -33,6 +33,6 @@
           </ion-item>
         </div>
       </ion-list>
-
+      <md-button> Continue </md-button>
     </ion-content>
 </ion-view>

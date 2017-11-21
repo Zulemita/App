@@ -132,7 +132,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   .state('tab.clothes', {
     url: '/clothes',
     views: {
-      'tab-cart': {
+      'ropa-tab': {
         templateUrl: 'templates/tab-ropa.html',
         controller: 'RopaCtrl'
       }

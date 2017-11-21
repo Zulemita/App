@@ -1,7 +1,7 @@
 angular.module('gym2go.controllers', [])
 
 .controller('GymsCtrl', function($scope) {
-
+	
 })
 
 //Proteinas
@@ -167,7 +167,7 @@ $scope.groups[3] = {
 })
 
 
-.controller('RopaCtrl', function($scope, Chats,sharedCartService) {
+.controller('RopaCtrl', function($scope, $ionicPopup,sharedCartService) {
 	$scope.groups = [];
 	//global variable shared between different pages. 
 	var cart = sharedCartService.cart;
@@ -269,33 +269,24 @@ $scope.groups[3] = {
 	};
 
 	$scope.showConfirm = function(ev,name,femenino) {
+
     	// Appending dialog to document.body to cover sidenav in docs app
 		var genero = femenino ? 'una ' : 'un ';
 		var genero2 = femenino ? 'la ' : 'el ';
-    	var confirm = $mdDialog.confirm()
-          .title('Indumentaria')
-          .textContent('Desea alquilar ' + genero  + name)
-          .ariaLabel('Alquiler indumentaria')
-          .targetEvent(ev)
-          .ok('Alquilar')
-          .cancel('Cancelar')
-		  .closeTo({
-         	 left: 1500
-		   });
 
-    	$mdDialog.show(confirm).then(function() {
-			$mdDialog.show(
-				$mdDialog.alert()
-					.parent(angular.element(document.querySelector('#listItems')))
-					.clickOutsideToClose(true)
-					.title('Agregado')
-					.textContent('Se agrego ' + genero2 + name + ' a su alquiler')
-					.ariaLabel('Confirmacion alquiler')
-					.ok('Ok')
-					.targetEvent(ev)
-			);
-		}, function() {
-      		//TODO cancel -> nothing
-    	});
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Alquiler',
+			template: 'Desea alquilar ' + genero  + name + ' para su actividad?'
+		});
+
+		confirmPopup.then(function(res) {
+			if(res) {
+				var alertPopup = $ionicPopup.alert({
+					title: 'Alquilado',
+					template: 'Se agrego ' + genero2 + name + ' a la actividad'
+				});
+				alertPopup.then(function(){});
+			}
+		});
   };	 
 })
