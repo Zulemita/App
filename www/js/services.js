@@ -77,8 +77,8 @@ angular.module('gym2go.services', [])
           "cart_item_price": price,
           "cart_item_qty": qty
         });
-        cartObj.total_qty += 1;	// increase the cartqty
-        cartObj.total_amount += parseInt(price);	//increase the cart amount
+        cartObj.total_qty += qty;	// increase the cartqty
+        cartObj.total_amount += parseInt(price*qty);	//increase the cart amount
       }
     };
 

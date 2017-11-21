@@ -7,6 +7,7 @@ angular.module('gym2go.controllers', [])
   //Proteinas
   .controller('SuppsCtrl', function ($scope, Chats, sharedCartService) {
     $scope.groups = [];
+    $scope.compras={};
     //global variable shared between different pages.
     var cart = sharedCartService.cart;
 
@@ -19,21 +20,24 @@ angular.module('gym2go.controllers', [])
       marca: "BSN SYNTHA-6",
       peso: "1kg",
       id: 1,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
     $scope.groups[0].items[1] = {
       img: "../img/Proteina2.jpg",
       marca: "NitroTech",
       peso: "4lb",
       id: 2,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
     $scope.groups[0].items[2] = {
       img: "../img/Proteina3.jpg",
       marca: "Monster Whey",
       peso: "2,2lb",
       id: 3,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
 
 //Aminoacidos
@@ -46,7 +50,8 @@ angular.module('gym2go.controllers', [])
       marca: "Amino",
       peso: "1kg",
       id: 4,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
 
 //Barras
@@ -59,7 +64,8 @@ angular.module('gym2go.controllers', [])
       marca: "Isostar",
       peso: "15g",
       id: 5,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
     //Creatina
     $scope.groups[3] = {
@@ -71,14 +77,16 @@ angular.module('gym2go.controllers', [])
       marca: "CREATINA PLUS 5950",
       peso: "200g",
       id: 6,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
     $scope.groups[3].items[1] = {
       img: "../img/Creatina2.jpg",
       marca: "MICRONIZADA",
       peso: "1kg",
       id: 7,
-      precio: 10
+      precio: 10,
+      cantidad: 0
     };
     /*
     * if given group is the selected group, deselect it
@@ -96,9 +104,9 @@ angular.module('gym2go.controllers', [])
     };
 
     //add to cart function
-    $scope.addToCart = function (id, image, name, price) {
+    $scope.addToCart = function (id, image, name, price, quantity) {
       // function cart.add is declared in services.js
-      cart.add(id, image, name, price, 1);
+      cart.add(id, "../img/Barcode.jpg", name, price, quantity);
     };
   })
 
@@ -110,41 +118,15 @@ angular.module('gym2go.controllers', [])
       $scope.total_amount = sharedCartService.total_amount;
     });
 
-    //remove function
-    $scope.removeFromCart = function (c_id) {
-      $scope.cart.drop(c_id);	 // deletes the product from cart.
-
-      // dynamically update the current $scope data.
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-
-    };
-
-    // increments the qty
-    $scope.inc = function (c_id) {
-      $scope.cart.increment(c_id);
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-    };
-
-    // decrements the qty
-    $scope.dec = function (c_id) {
-      $scope.cart.decrement(c_id);
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-    };
-
-    $scope.checkout = function () {
-      if ($scope.total_amount > 0) {
-        $state.go('checkOut');  // used to move to checkout page.
+    $scope.expandItem = function(item) {
+      if ($scope.isItemExpanded(item)) {
+        $scope.shownItem = null;
+      } else {
+        $scope.shownItem = item;
       }
-      else {
-        //alerts the user that cart is empty.
-        var alertPopup = $ionicPopup.alert({
-          title: 'No item in your Cart',
-          template: 'Please add Some Items!'
-        });
-      }
+    };
+    $scope.isItemExpanded = function(item) {
+      return $scope.shownItem === item;
     };
   })
 
