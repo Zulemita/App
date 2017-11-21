@@ -20,15 +20,16 @@
             <div class="col-md-6">
               <img ng-src="{{item.img}}" style="width:80%;height:80%;"/></div>
             <div class="col-md-4">
-              Marca: {{item.marca}}<br/>
+              {{item.marca}}<br/>
               Peso: {{item.peso}}<br/>
               Precio: ${{item.precio}}
+	      <input type="number" ng-model="item.cantidad" min="0" max="10">
             </div>
           </div>
-
           <div class="col-md-2">
-            <a ng-click="addToCart(item.id,item.img,item.marca,item.precio)"
-               class="button  button-balanced button-clear   icon ion-android-cart"> </a>
+            <button ng-click="addToCart(item.id,item.img,item.marca,item.precio,item.cantidad)" class="button button-positive button-block ">
+   	    Comprar
+            </button>
           </div>
         </ion-item>
       </div>
