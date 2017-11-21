@@ -127,7 +127,18 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         controller: 'CartCtrl'
       }
     }
+  })
+
+  .state('tab.clothes', {
+    url: '/clothes',
+    views: {
+      'tab-cart': {
+        templateUrl: 'templates/tab-ropa.html',
+        controller: 'RopaCtrl'
+      }
+    }
   });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

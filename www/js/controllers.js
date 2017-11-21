@@ -165,3 +165,137 @@ $scope.groups[3] = {
     $state.go("tab.gyms")
   };
 })
+
+
+.controller('RopaCtrl', function($scope, Chats,sharedCartService) {
+	$scope.groups = [];
+	//global variable shared between different pages. 
+	var cart = sharedCartService.cart;
+
+$scope.groups[0] = {
+			name: "Remeras",
+			items: []
+		};
+	$scope.groups[0].items[0] = {
+			img:"../img/shirt-rosa-mujer.jpg",
+			marca: "Reebok",
+			name: "Remera Dry Fit - Mujer",
+			f: true,
+			id: 1,
+			precio: 10
+		};
+$scope.groups[0].items[1] = {
+			img:"../img/shirt-azul-varon.jpeg",
+			marca: "Nike",
+			name: "Remera Dry Fit - Hombre",
+			f: true,
+			id: 2,
+			precio: 10
+		};
+
+$scope.groups[1] = {
+			name: "Tops",
+			items: []
+		};
+	$scope.groups[1].items[0] = {
+			img:"../img/admitone-Top-rojo.png",
+			marca: "Admitone",
+			name: "Top Rojo de tiras finas",
+			f: false,
+			id: 3,
+			precio: 10
+		};
+	$scope.groups[1].items[1] = {
+		img:"../img/admitone-Top-rojo.png",
+		marca: "Adidas",
+		name: "Top Negro",
+		f: false,
+		id: 4,
+		precio: 10
+	};
+
+$scope.groups[2] = {
+			name: "Shorts",
+			items: []
+		};
+	$scope.groups[2].items[0] = {
+			img:"../img/women-short-black.jpg",
+			marca: "Nike",
+			name: "Short Femenino Negro",
+			id: 5,
+			precio: 10
+		};
+	$scope.groups[2].items[0] = {
+		img:"../img/short-blakc-men.jpg",
+		marca: "Nike",
+		name: "Short Masculino Negro",
+		f: false,
+		id: 6,
+		precio: 10
+	};
+$scope.groups[3] = {
+			name: "Calsas",
+			items: []
+		};
+	$scope.groups[3].items[0] = {
+			img:"../img/Barra1.jpg",
+			marca: "Reebok",
+			name: "Calsa Femeninas Violetas",
+			f: true,
+			id: 7,
+			precio: 10
+		};
+	$scope.groups[3].items[0] = {
+		img:"../img/Barra1.jpg",
+		marca: "Reebok",
+		name: "Calsa 3/4 Masculinas ",
+		f: true,
+		id: 8,
+		precio: 10
+	};
+	/*
+	* if given group is the selected group, deselect it
+	* else, select the given group
+	*/
+	$scope.toggleGroup = function(group) {
+		if ($scope.isGroupShown(group)) {
+			$scope.shownGroup = null;
+		} else {
+			$scope.shownGroup = group;
+		}
+	};
+	$scope.isGroupShown = function(group) {
+		return $scope.shownGroup === group;
+	};
+
+	$scope.showConfirm = function(ev,name,femenino) {
+    	// Appending dialog to document.body to cover sidenav in docs app
+		var genero = femenino ? 'una ' : 'un ';
+		var genero2 = femenino ? 'la ' : 'el ';
+    	var confirm = $mdDialog.confirm()
+          .title('Indumentaria')
+          .textContent('Desea alquilar ' + genero  + name)
+          .ariaLabel('Alquiler indumentaria')
+          .targetEvent(ev)
+          .ok('Alquilar')
+          .cancel('Cancelar')
+		  .closeTo({
+         	 left: 1500
+		   });
+
+    	$mdDialog.show(confirm).then(function() {
+			$mdDialog.show(
+				$mdDialog.alert()
+					.parent(angular.element(document.querySelector('#listItems')))
+					.clickOutsideToClose(true)
+					.title('Agregado')
+					.textContent('Se agrego ' + genero2 + name + ' a su alquiler')
+					.ariaLabel('Confirmacion alquiler')
+					.ok('Ok')
+					.targetEvent(ev)
+			);
+		}, function() {
+      		//TODO cancel -> nothing
+    	});
+  };	 
+})

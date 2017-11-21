@@ -1,0 +1,38 @@
+<ion-view view-title="Alquiler Indumentaria">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
+    </button>
+  </ion-nav-buttons>
+ <ion-content>
+      <ion-list>
+        <div ng-repeat="group in groups">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{group.name}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="item in group.items"
+                    ng-show="isGroupShown(group)">
+            <div class="row">
+              <div class="col-md-6">
+                <img ng-src="{{item.img}}" style="width:80%;height:80%;"/></div>
+              <div class="col-md-4">
+                        {{item.name}}               
+                        Marca: {{item.marca}}<br/>
+                        Precio: ${{item.precio}}
+            </div>
+            </div>
+
+              <div class="col-md-2">
+                <a  ng-click="showConfirm($event,{{item.name}},{{item.f}})" 
+                class="button  button-balanced button-clear icon ion-android-cart">  </a> 
+              </div>
+          </ion-item>
+        </div>
+      </ion-list>
+
+    </ion-content>
+</ion-view>
