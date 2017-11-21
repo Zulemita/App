@@ -106,7 +106,7 @@ angular.module('gym2go.controllers', [])
     //add to cart function
     $scope.addToCart = function (id, image, name, price, quantity) {
       // function cart.add is declared in services.js
-      cart.add(id, image, name, price, quantity);
+      cart.add(id, "../img/Barcode.jpg", name, price, quantity);
     };
   })
 
@@ -118,41 +118,15 @@ angular.module('gym2go.controllers', [])
       $scope.total_amount = sharedCartService.total_amount;
     });
 
-    //remove function
-    $scope.removeFromCart = function (c_id) {
-      $scope.cart.drop(c_id);	 // deletes the product from cart.
-
-      // dynamically update the current $scope data.
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-
-    };
-
-    // increments the qty
-    $scope.inc = function (c_id) {
-      $scope.cart.increment(c_id);
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-    };
-
-    // decrements the qty
-    $scope.dec = function (c_id) {
-      $scope.cart.decrement(c_id);
-      $scope.total_qty = sharedCartService.total_qty;
-      $scope.total_amount = sharedCartService.total_amount;
-    };
-
-    $scope.checkout = function () {
-      if ($scope.total_amount > 0) {
-        $state.go('checkOut');  // used to move to checkout page.
+    $scope.expandItem = function(item) {
+      if ($scope.isItemExpanded(item)) {
+        $scope.shownItem = null;
+      } else {
+        $scope.shownItem = item;
       }
-      else {
-        //alerts the user that cart is empty.
-        var alertPopup = $ionicPopup.alert({
-          title: 'No item in your Cart',
-          template: 'Please add Some Items!'
-        });
-      }
+    };
+    $scope.isItemExpanded = function(item) {
+      return $scope.shownItem === item;
     };
   })
 

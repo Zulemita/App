@@ -5,48 +5,24 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-content padding="'true'" class="has-header">
-        <div>
-		
-		    <!-- displays total_amount and qty -->
-            <p>Total ( {{ total_qty }} ) =
-                <strong>${{total_amount}}</strong>
-            </p>
-        </div>
-        
-		<!-- checkout button-->
-		<button ng-click="checkout()" class="button button-positive button-block ">Comprar</button>
-		
-		<!-- populating cart list-->
-		<div ng-repeat="item in cart"   >
-		
-		<!-- used card container-->
-			<div class="list card" >
-				
-				<!--used to give title of the product name-->
-				<div class="item item-divider">{{item.cart_item_name}} </div>
-				
-				<!--used to give the details about the cart item-->
-				<div class="item item-body">
-					
-					<!--loads the cart item image-->
-					<img ng-src="{{'img/'+ item.cart_item_image}}" width="100%" height="auto" style="width: 100%; height: auto;">
-						
-					<div>
-						<p>{{item.cart_item_qty}} x ${{item.cart_item_price}} =
+        	<!-- populating cart list-->
+
+ <ion-item ng-repeat="item in cart" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
+
+        <div ng-class="isItemExpanded(item) ? 'expand-item active' : 'expand-item inactive'">
+          <h3>{{item.cart_item_name}}</h3>
+
+          <p>{{item.cart_item_qty}} x ${{item.cart_item_price}} =
 							<strong>${{ item.cart_item_qty *  item.cart_item_price  }}</strong>
 						</p>
-					</div>
-					
-					<!--the bottom buttons for cart items-->
-					<div class="button-bar">
-						<button ng-click="removeFromCart(item.cart_item_id)" class="button button-assertive button-block button-small icon ion-android-delete" ></button>
-						<button class="button button-stable button-clear button-block button-small icon ion-plus" ng-click="inc(item.cart_item_id)"></button>
-						<button class="button button-stable button-clear button-block button-small">{{item.cart_item_qty}}</button>
-						<button class="button button-stable button-clear button-block  icon ion-minus" ng-click="dec(item.cart_item_id)" ></button>
-					</div>
-	
-				</div>
-			</div>
-		</div>	
+					<img ng-src="{{'img/'+ item.cart_item_image}}" width="100%" height="auto" style="width: 100%; height: auto;">
+
+        </div>
+
+        <i ng-class="isItemExpanded(item) ? 'icon ion-chevron-down icon-accessory' : 'icon ion-chevron-right icon-accessory'"></i>
+      </ion-item>
+
+
+		
   </ion-content>
 </ion-view>
