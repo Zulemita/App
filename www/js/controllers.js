@@ -179,7 +179,7 @@ angular.module('gym2go.controllers', [])
   })
 
   //Personal Trainers
-  .controller('PersonalCtrl', function ($scope, $ionicPopup, activityWizardService) {
+  .controller('PersonalCtrl', function ($scope, $ionicPopup, $state) {
     $scope.trainers = [{
       name: "Juan Perez",
       age: "29 años",
@@ -221,7 +221,8 @@ angular.module('gym2go.controllers', [])
       })
       .then(function(confirmed) {
         if (confirmed) {
-          activityWizardService.addPersonalTrainer(personal)
+          // TODO - Add redirection to clothes selection screen
+          //$state.go(tab.clothes)
         }
       })
     };
