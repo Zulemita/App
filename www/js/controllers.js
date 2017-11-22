@@ -8,6 +8,9 @@ angular.module('gym2go.controllers', [])
   .controller('SuppsCtrl', function ($scope, Chats, sharedCartService) {
     $scope.groups = [];
     $scope.compras={};
+    $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
+    $scope.data = {};
+    $scope.data.index = 1;
     //global variable shared between different pages.
     var cart = sharedCartService.cart;
 
@@ -104,9 +107,9 @@ angular.module('gym2go.controllers', [])
     };
 
     //add to cart function
-    $scope.addToCart = function (id, image, name, price, quantity) {
+    $scope.addToCart = function (id, image, name, price, quantity,gym) {
       // function cart.add is declared in services.js
-      cart.add(id, "../img/Barcode.jpg", name, price, quantity);
+      cart.add(id, "../img/Barcode.jpg", name, price, quantity,gym);
     };
   })
 
