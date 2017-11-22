@@ -5,24 +5,48 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-content padding="'true'" class="has-header">
-        	<!-- populating cart list-->
+      <!-- populating cart list-->
 
- <ion-item ng-repeat="item in cart" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
+      <ion-item class="item item-text-wrap item-icon-right" ng-show="fromActivity()">
+
+        <div class="expand-item active">
+          <h3>GymBelgrano</h3>
+
+          <p>Pase Gimnasio
+          </p>
+          <p>Fecha y hora:
+            <strong>23/11/2017 a las 19:00hs</strong>
+          </p>
+          <p>Personal trainer:
+            <strong>Juan Perez</strong>
+          </p>
+          <p>Ropa:
+            <strong>Remera Dry Fit - Hombre / Short Masculino Negro</strong>
+          </p>
+          <img src="../img/Barcode.jpg" width="40%" height="auto" style="width: 40%; height: auto;">
+
+        </div>
+
+        <i
+          class="icon ion-chevron-down icon-accessory"></i>
+      </ion-item>
+
+      <ion-item ng-repeat="item in cart" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
 
         <div ng-class="isItemExpanded(item) ? 'expand-item active' : 'expand-item inactive'">
           <h3>{{item.cart_item_name}}</h3>
 
           <p>{{item.cart_item_qty}} x ${{item.cart_item_price}} =
-							<strong>${{ item.cart_item_qty *  item.cart_item_price  }}</strong>
-						</p>
-					<img ng-src="{{'img/'+ item.cart_item_image}}" width="100%" height="auto" style="width: 100%; height: auto;">
+            <strong>${{ item.cart_item_qty * item.cart_item_price }}</strong>
+          </p>
+          <img ng-src="{{'img/'+ item.cart_item_image}}" width="40%" height="auto" style="width: 40%; height: auto;">
 
         </div>
 
-        <i ng-class="isItemExpanded(item) ? 'icon ion-chevron-down icon-accessory' : 'icon ion-chevron-right icon-accessory'"></i>
+        <i
+          ng-class="isItemExpanded(item) ? 'icon ion-chevron-down icon-accessory' : 'icon ion-chevron-right icon-accessory'"></i>
       </ion-item>
 
 
-		
-  </ion-content>
+    </ion-content>
 </ion-view>

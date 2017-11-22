@@ -7,18 +7,24 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('gym2go', ['ionic', 'gym2go.controllers', 'gym2go.services', 'ngCordova', 'ngMap', 'ionic-datepicker'])
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
+fromActivity
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+  });
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    if (fromState.name.indexOf('cart') !== -1) {
+      fromParams['fromActivity'] = null
     }
   });
 })
@@ -128,7 +134,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
   .state('tab.cart', {
-    url: '/cart',
+    url: '/cart/:fromActivity',
     views: {
       'tab-cart': {
         templateUrl: 'templates/tab-cart.html',

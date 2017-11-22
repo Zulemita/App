@@ -23,12 +23,13 @@
               {{item.marca}}<br/>
               Peso: {{item.peso}}<br/>
               Precio: ${{item.precio}}
-	      <input type="number" ng-model="item.cantidad" min="0" max="10">
+              <input type="number" ng-model="item.cantidad" min="0" max="10">
             </div>
           </div>
           <div class="col-md-2">
-            <button ng-click="addToCart(item.id,item.img,item.marca,item.precio,item.cantidad)" class="button button-positive button-block ">
-   	    Comprar
+            <button ng-click="addToCart(item.id,item.img,item.marca,item.precio,item.cantidad)"
+                    class="button button-positive button-block ">
+              Comprar
             </button>
           </div>
         </ion-item>

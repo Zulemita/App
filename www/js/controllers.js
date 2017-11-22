@@ -110,7 +110,7 @@ angular.module('gym2go.controllers', [])
     };
   })
 
-  .controller('CartCtrl', function ($scope, $ionicPopup, sharedCartService) {
+  .controller('CartCtrl', function ($scope, $stateParams, $ionicPopup, sharedCartService) {
     // Loads the '$scope variable' cart i.e. 'HTML variable'
     $scope.$on('$stateChangeSuccess', function () {
       $scope.cart = sharedCartService.cart;
@@ -128,6 +128,9 @@ angular.module('gym2go.controllers', [])
     $scope.isItemExpanded = function(item) {
       return $scope.shownItem === item;
     };
+    $scope.fromActivity = function() {
+      return $stateParams.fromActivity === "true"
+    }
   })
 
   .controller('LoginCtrl', function ($scope, $state) {
@@ -193,7 +196,7 @@ angular.module('gym2go.controllers', [])
     };
 
     var ipObj1 = {
-      callback: function (val) {  //Mandatory 
+      callback: function (val) {  //Mandatory
         console.log('Return value from the datepicker popup is : ' + val, new Date(val));
         var date = new Date(val);
 
@@ -203,18 +206,18 @@ angular.module('gym2go.controllers', [])
 
         $scope.selectedDate = day+'/'+month+'/'+year;;
       },
-      from: new Date(2017, 10, 23), //Optional 
-      to: new Date(2019, 10, 30), //Optional 
-      inputDate: new Date(),      //Optional 
+      from: new Date(2017, 10, 23), //Optional
+      to: new Date(2019, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
       titleLabel: 'Select a Date',
-      mondayFirst: true,          //Optional 
-      disableWeekdays: [0],       //Optional 
-      closeOnSelect: false,       //Optional 
+      mondayFirst: true,          //Optional
+      disableWeekdays: [0],       //Optional
+      closeOnSelect: false,       //Optional
       templateType: 'popup',
       setLabel: 'Elegir',
       closeLabel: 'Cerrar'
     };
- 
+
     $scope.openDatePicker = function(){
       ionicDatePicker.openDatePicker(ipObj1);
     };
@@ -274,13 +277,13 @@ angular.module('gym2go.controllers', [])
       $state.go("tab.clothes")
     }
   })
-  
-  .controller('RopaCtrl', function($scope, $ionicPopup,sharedCartService) {
+
+  .controller('RopaCtrl', function($scope, $state, $ionicPopup,sharedCartService) {
     $scope.groups = [];
     $scope.totalAlquilados = 0;
     $scope.cantidadAlquilados = 0;
     $scope.itemsAlquilados = [];
-    //global variable shared between different pages. 
+    //global variable shared between different pages.
     var cart = sharedCartService.cart;
 
     $scope.groups[0] = {
@@ -387,7 +390,7 @@ angular.module('gym2go.controllers', [])
 
       var confirmPopup = $ionicPopup.confirm({
         title: '',
-        template: '<div><div> <img ng-src="' + item.img + '" style="width:100%"/> </div> <div>' + 
+        template: '<div><div> <img ng-src="' + item.img + '" style="width:100%"/> </div> <div>' +
           ' Desea alquilar ' + genero  + '<b>' + item.name + '</b> para su actividad? </div></div>',
         okText: 'Alquilar',
         cancelText: 'Cancelar'
@@ -411,7 +414,7 @@ angular.module('gym2go.controllers', [])
       });
       confirmPopup.then(function(res){
         if(res){
-          //TODO $state.go('tab.succes')
+          $state.go('tab.cart', {fromActivity: true});
         }
       })
     }
@@ -420,23 +423,23 @@ angular.module('gym2go.controllers', [])
       var title = ''
       var template = ''
       if($scope.cantidadAlquilados > 0){
-        
+
         template = '<ion-list><div id="listAlquilados">';
         for(var i = 0; i < $scope.itemsAlquilados.length; i ++){
           var item = $scope.itemsAlquilados[i];
-          template += '<ion-item><img ng-src="' + item.img + '" style="width:100%;height:80%;"/><div class="row"><div class="col-md-6"></div>' + 
+          template += '<ion-item><img ng-src="' + item.img + '" style="width:100%;height:80%;"/><div class="row"><div class="col-md-6"></div>' +
             '<div class="col-md-4"><b>'+ item.name + '</b></div></div></ion-item>';
         }
         template += '</div></ion-list>';
       } else {
         template = 'No hay elementos alquilados'
       }
-      var alertPopup = $ionicPopup.alert({  
+      var alertPopup = $ionicPopup.alert({
         title: 'Ya alquilados',
         template: template
        });
       alertPopup.then(function(){
-          
+
       });
-    }	 
+    }
   });
