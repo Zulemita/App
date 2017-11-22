@@ -19,7 +19,7 @@ angular.module('gym2go.controllers', [])
       items: []
     };
     $scope.groups[0].items[0] = {
-      img: "../img/Proteina1.jpg",
+      img: "img/Proteina1.jpg",
       marca: "BSN SYNTHA-6",
       peso: "1kg",
       id: 1,
@@ -27,7 +27,7 @@ angular.module('gym2go.controllers', [])
       cantidad: 0
     };
     $scope.groups[0].items[1] = {
-      img: "../img/Proteina2.jpg",
+      img: "img/Proteina2.jpg",
       marca: "NitroTech",
       peso: "4lb",
       id: 2,
@@ -35,7 +35,7 @@ angular.module('gym2go.controllers', [])
       cantidad: 0
     };
     $scope.groups[0].items[2] = {
-      img: "../img/Proteina3.jpg",
+      img: "img/Proteina3.jpg",
       marca: "Monster Whey",
       peso: "2,2lb",
       id: 3,
@@ -49,7 +49,7 @@ angular.module('gym2go.controllers', [])
       items: []
     };
     $scope.groups[1].items[0] = {
-      img: "../img/Aminoacido1.jpg",
+      img: "img/Aminoacido1.jpg",
       marca: "Amino",
       peso: "1kg",
       id: 4,
@@ -63,7 +63,7 @@ angular.module('gym2go.controllers', [])
       items: []
     };
     $scope.groups[2].items[0] = {
-      img: "../img/Barra1.jpg",
+      img: "img/Barra1.jpg",
       marca: "Isostar",
       peso: "15g",
       id: 5,
@@ -76,7 +76,7 @@ angular.module('gym2go.controllers', [])
       items: []
     };
     $scope.groups[3].items[0] = {
-      img: "../img/Creatina1.jpg",
+      img: "img/Creatina1.jpg",
       marca: "CREATINA PLUS 5950",
       peso: "200g",
       id: 6,
@@ -84,7 +84,7 @@ angular.module('gym2go.controllers', [])
       cantidad: 0
     };
     $scope.groups[3].items[1] = {
-      img: "../img/Creatina2.jpg",
+      img: "img/Creatina2.jpg",
       marca: "MICRONIZADA",
       peso: "1kg",
       id: 7,
@@ -109,7 +109,7 @@ angular.module('gym2go.controllers', [])
     //add to cart function
     $scope.addToCart = function (id, image, name, price, quantity,gym) {
       // function cart.add is declared in services.js
-      cart.add(id, "../img/Barcode.jpg", name, price, quantity,gym);
+      cart.add(id, "img/Barcode.jpg", name, price, quantity,gym);
     };
   })
 
@@ -232,28 +232,28 @@ angular.module('gym2go.controllers', [])
     $scope.trainers = [{
       name: "Juan Perez",
       age: "29 años",
-      profileImage: "../img/personal1.png",
+      profileImage: "img/personal1.png",
       speciality: "Musculación en general",
       price: 50
       },
       {
         name: "Federico Romo",
         age: "35 años",
-        profileImage: "../img/personal2.jpg",
+        profileImage: "img/personal2.jpg",
         speciality: "Running",
         price: 50
       },
       {
         name: "Carla Mi",
         age: "31 años",
-        profileImage: "../img/personal3.jpeg",
+        profileImage: "img/personal3.jpeg",
         speciality: "Boxeo",
         price: 50
       },
       {
         name: "Lucas Gonzalez",
         age: "28 años",
-        profileImage: "../img/personal4.jpg",
+        profileImage: "img/personal4.jpg",
         speciality: "Musculación en general",
         price: 50
       }];
@@ -294,7 +294,7 @@ angular.module('gym2go.controllers', [])
         items: []
       };
     $scope.groups[0].items[0] = {
-        img:"../img/shirt-rosa-mujer.jpg",
+        img:"img/shirt-rosa-mujer.jpg",
         marca: "Reebok",
         name: "Remera Dry Fit - Mujer",
         f: true,
@@ -302,7 +302,7 @@ angular.module('gym2go.controllers', [])
         precio: 10
       };
     $scope.groups[0].items[1] = {
-        img:"../img/shirt-azul-varon.jpeg",
+        img:"img/shirt-azul-varon.jpeg",
         marca: "Nike",
         name: "Remera Dry Fit - Hombre",
         f: true,
@@ -315,7 +315,7 @@ angular.module('gym2go.controllers', [])
         items: []
       };
     $scope.groups[1].items[0] = {
-        img:"../img/admitone-Top-rojo.png",
+        img:"img/admitone-Top-rojo.png",
         marca: "Admitone",
         name: "Top Rojo de tiras finas",
         f: false,
@@ -323,7 +323,7 @@ angular.module('gym2go.controllers', [])
         precio: 10
       };
     $scope.groups[1].items[1] = {
-      img:"../img/topNegro.png",
+      img:"img/topNegro.png",
       marca: "Adidas",
       name: "Top Negro",
       f: false,
@@ -336,14 +336,14 @@ angular.module('gym2go.controllers', [])
         items: []
       };
     $scope.groups[2].items[0] = {
-        img:"../img/women-short-black.jpg",
+        img:"img/women-short-black.jpg",
         marca: "Nike",
         name: "Short Femenino Negro",
         id: 5,
         precio: 10
       };
     $scope.groups[2].items[1] = {
-      img:"../img/short-blakc-men.jpg",
+      img:"img/short-blakc-men.jpg",
       marca: "Nike",
       name: "Short Masculino Negro",
       f: false,
@@ -355,7 +355,7 @@ angular.module('gym2go.controllers', [])
         items: []
       };
     $scope.groups[3].items[0] = {
-        img:"../img/calsa-violeta.jpg",
+        img:"img/calsa-violeta.jpg",
         marca: "Reebok",
         name: "Calsa Femenina Violeta",
         f: true,
@@ -363,7 +363,7 @@ angular.module('gym2go.controllers', [])
         precio: 10
       };
     $scope.groups[3].items[1] = {
-      img:"../img/calsa-negra-varon.jpg",
+      img:"img/calsa-negra-varon.jpg",
       marca: "Reebok",
       name: "Calsa 3/4 Masculina ",
       f: true,
