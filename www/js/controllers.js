@@ -5,7 +5,7 @@ angular.module('gym2go.controllers', [])
   })
 
   //Proteinas
-  .controller('SuppsCtrl', function ($scope, Chats, sharedCartService) {
+  .controller('SuppsCtrl', function ($scope, Chats, $ionicPopup,sharedCartService) {
     $scope.groups = [];
     $scope.compras={};
     $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
@@ -108,8 +108,18 @@ angular.module('gym2go.controllers', [])
 
     //add to cart function
     $scope.addToCart = function (id, image, name, price, quantity,gym) {
-      // function cart.add is declared in services.js
-      cart.add(id, "img/Barcode.jpg", name, price, quantity,gym,"","","");
+    $ionicPopup.confirm({
+        title: 'Confirmar Compra',
+        template: '<div><p>' + name + '</p><strong>Precio: $' + price + '</strong></div>',
+        okText: 'Continuar',
+        cancelText: 'Cancelar'
+    })
+    .then(function(confirmed) {
+        if (confirmed) {
+	      // function cart.add is declared in services.js
+	      cart.add(id, "img/Barcode.jpg", name, price, quantity,gym,"","","");
+        }
+    })
     };
   })
 
