@@ -158,7 +158,3 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $urlRouterProvider.otherwise('/login');
 
 });
-
-app.controller('GymsCtrl', function($scope, $state, $cordovaGeolocation) {
-
-});
