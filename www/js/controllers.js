@@ -281,7 +281,7 @@ angular.module('gym2go.controllers', [])
     }
   })
 
-  .controller('RopaCtrl', function($scope, $state, $ionicPopup,sharedCartService) {
+  .controller('RopaCtrl', function($scope, $state, $ionicPopup, sharedCartService, $ionicHistory) {
     $scope.groups = [];
     $scope.totalAlquilados = 0;
     $scope.cantidadAlquilados = 0;
@@ -417,6 +417,7 @@ angular.module('gym2go.controllers', [])
       });
       confirmPopup.then(function(res){
         if(res){
+          $ionicHistory.clearHistory();
           $state.go('tab.cart', {fromActivity: true});
         }
       })
