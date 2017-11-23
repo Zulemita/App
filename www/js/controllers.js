@@ -109,7 +109,7 @@ angular.module('gym2go.controllers', [])
     //add to cart function
     $scope.addToCart = function (id, image, name, price, quantity,gym) {
       // function cart.add is declared in services.js
-      cart.add(id, "img/Barcode.jpg", name, price, quantity,gym);
+      cart.add(id, "img/Barcode.jpg", name, price, quantity,gym,"","","");
     };
   })
 
@@ -418,6 +418,7 @@ angular.module('gym2go.controllers', [])
       confirmPopup.then(function(res){
         if(res){
           $ionicHistory.clearHistory();
+	  cart.add(20, "img/Barcode.jpg", "Pase Gimnasio", 25, 1,"Belgrano","Fecha y hora:23/11/2017 a las 19:00hs","Personal trainer:Juan Perez","Ropa:Remera Dry Fit - Hombre / Short Masculino Negro");
           $state.go('tab.cart', {fromActivity: true});
         }
       })

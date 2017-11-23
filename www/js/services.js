@@ -57,8 +57,8 @@ angular.module('gym2go.services', [])
     cartObj.total_qty = 0;    // total cart qty
 
 
-    cartObj.cart.add = function (id, image, name, price, qty,gym) {
-      if (cartObj.cart.find(id) != -1) {  //find() is declared in the bottom.
+    cartObj.cart.add = function (id, image, name, price, qty,gym,date,pt,ropa) {
+     /* if (cartObj.cart.find(id) != -1) {  //find() is declared in the bottom.
         // It is used to check if the product is already added to the cart or not
 
         //Ionic popup
@@ -68,7 +68,7 @@ angular.module('gym2go.services', [])
         });
 
       }
-      else {
+      else {*/
         //insert this into cart array
         cartObj.cart.push({
           "cart_item_id": id,
@@ -76,11 +76,14 @@ angular.module('gym2go.services', [])
           "cart_item_name": name,
           "cart_item_price": price,
           "cart_item_qty": qty,
-          "cart_item_gym": gym,		
+          "cart_item_gym": gym,
+          "cart_item_date": date,
+          "cart_item_pt": pt,
+          "cart_item_ropa": ropa
         });
         cartObj.total_qty += qty;	// increase the cartqty
         cartObj.total_amount += parseInt(price*qty);	//increase the cart amount
-      }
+      //}
     };
 
     cartObj.cart.find = function (id) {
