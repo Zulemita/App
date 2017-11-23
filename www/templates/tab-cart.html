@@ -7,7 +7,7 @@
     <ion-content padding="'true'" class="has-header">
       <!-- populating cart list-->
 
-      <ion-item class="item item-text-wrap item-icon-right" ng-show="fromActivity()">
+<!--       <ion-item class="item item-text-wrap item-icon-right" ng-show="true">
 
         <div class="expand-item active">
           <h3>GymBelgrano</h3>
@@ -29,13 +29,15 @@
 
         <i
           class="icon ion-chevron-down icon-accessory"></i>
-      </ion-item>
+      </ion-item>-->
 
       <ion-item ng-repeat="item in cart" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
 
         <div ng-class="isItemExpanded(item) ? 'expand-item active' : 'expand-item inactive'">
           <h3>{{item.cart_item_name}}</h3>
-
+          <p>{{item.cart_item_date}}</p>
+          <p>{{item.cart_item_pt}}</p>
+          <p>{{item.cart_item_ropa}}</p>
           <p>{{item.cart_item_qty}} x ${{item.cart_item_price}} =
             <strong>${{ item.cart_item_qty * item.cart_item_price }}</strong>
           </p>
