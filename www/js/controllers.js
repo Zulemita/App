@@ -419,6 +419,9 @@ angular.module('gym2go.controllers', [])
         if(res){
           $ionicHistory.clearHistory();
           $state.go('tab.cart', {fromActivity: true});
+          $scope.itemsAlquilados = []
+          $scope.cantidadAlquilados = 0
+          $scope.totalAlquilados = 0
         }
       })
     }
