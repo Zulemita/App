@@ -5,31 +5,9 @@
   </ion-nav-buttons>
   <ion-content>
     <script>
-        /*var vm=this;
-        var personMarker = { url:'img/person-marker.png', scaledSize:[30,30], origin: [0,0], anchor: [15,30] }
-        var gymMarker = { url:'img/gym-marker.png', scaledSize:[35,35],  origin: [0,0], anchor: [17,35] }
-        vm.gyms =[
-          {long: -34.618634, lat: -58.369471, index: 1, icon: gymMarker },
-          {long: -34.616321, lat: -58.3685261, index: 2,  icon: gymMarker },
-          {long: -34.618634, lat: -58.369471, index: 3,  icon: gymMarker },
-          {long: -34.618634, lat: -58.369471, index: 4,  icon: gymMarker }
-        ];
-
-        vm.infoWindow = [
-          {name: "Fiuba Gym", dir: "Paseo colon 820"},
-          {name: "Fiuba Gym", dir: "Paseo colon 820"},
-          {name: "Fiuba Gym", dir: "Paseo colon 820"},
-          {name: "Fiuba Gym", dir: "Paseo colon 820"}
-        ]
-      */      
       app.module('ngMap').run(function($rootScope, NgMap) {        
         NgMap.getMap().then(function(map) {
           $rootScope.map = map;
-          /*map.setOptions({styles: [
-          {
-            featureType: 'poi',
-            stylers: [{visibility: 'off'}]
-          }})*/
         });
       });
       </script>

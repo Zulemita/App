@@ -55,7 +55,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-media": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-vibration": {}
+      "cordova-plugin-vibration": {},
+      "cordova-whitelist-plugin": {}
     },
     "platforms": [
       "android"
