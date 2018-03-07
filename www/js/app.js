@@ -123,10 +123,21 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     }
   })
 
+    // category list
+  .state('tab.cat', {
+      url: '/cat',
+      views: {
+        'tab-cat': {
+          templateUrl: 'templates/tab-cat.html',
+          controller: 'CatCtrl'
+        }
+      }
+    })
+
   .state('tab.supps', {
       url: '/supps',
       views: {
-        'tab-supps': {
+        'tab-cat': {
           templateUrl: 'templates/tab-supps.html',
           controller: 'SuppsCtrl'
         }

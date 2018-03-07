@@ -3,6 +3,48 @@ angular.module('gym2go.controllers', [])
   .controller('GymsCtrl', function ($scope) {
 
   })
+  .controller('CatCtrl', function ($scope, $state) {
+    $scope.groups = [];
+    $scope.compras={};
+    $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
+    $scope.data = {};
+    $scope.data.index = 1;
+    //global variable shared between different pages.
+
+    $scope.groups[0] = {
+      name: "Accesorios Escolares"
+    };
+
+    //Aminoacidos
+    $scope.groups[1] = {
+      name: "Art. Electronicos"
+    };
+
+    //Barras
+    $scope.groups[2] = {
+      name: "Bazar"
+    };
+    //Creatina
+    $scope.groups[3] = {
+      name: "Bebidas"
+    };
+    /*
+    * if given group is the selected group, deselect it
+    * else, select the given group
+    */
+    $scope.toggleGroup = function (group) {
+      if ($scope.isGroupShown(group)) {
+        $scope.shownGroup = null;
+      } else {
+        $scope.shownGroup = group;
+      }
+      $state.go('tab.supps');
+    };
+    $scope.isGroupShown = function (group) {
+      return $scope.shownGroup === group;
+    };
+
+  })
 
   //Proteinas
   .controller('SuppsCtrl', function ($scope, Chats, $ionicPopup,sharedCartService) {
