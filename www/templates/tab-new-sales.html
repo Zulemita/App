@@ -1,0 +1,56 @@
+<ion-view view-title="Ofertas/Novedades">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    
+    <ion-list>
+      <div ng-repeat="group in groups">
+        <ion-item class="item-stable"
+                  ng-click="toggleGroup(group)"
+                  ng-class="{active: isGroupShown(group)}">
+          <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+          &nbsp;
+          {{group.name}}
+        </ion-item>
+        <ion-item class="item-accordion"
+                  ng-repeat="item in group.items"
+                  ng-show="isGroupShown(group)">
+          <div class="card">
+            <div class="item item-divider item-icon-right">
+              <i ng-click="addToCart(item.id,item.img,item.marca,item.precio,item.cantidad,gyms[data.index])" style="color: #4F8EF7;" class="icon ion-information-circled"></i>
+              <span>{{item.marca}}</span>
+            </div>
+            <div class="item item-text-wrap">
+              <img ng-src="{{item.img}}" style="max-height:240px;margin: 0
+              auto;display: block;" />
+            </div>
+            <div class="item item-divider">
+              <span>Peso {{item.peso}}</span>
+              <span style="float:right;">Precio ${{item.precio}}</span>
+            </div>
+          </div>
+          <!--div class="row">
+            <div class="col-md-6">
+              <img ng-src="{{item.img}}" class="full-image"/>
+            </div>
+            <div class="col-md-4">
+              {{item.marca}}<br/>
+              Peso: {{item.peso}}<br/>
+              Precio: ${{item.precio}}
+              <input type="number" ng-model="item.cantidad" min="0" max="10">
+            </div>
+          </div-->
+          <!--div class="col-md-2">
+            <button ng-click="addToCart(item.id,item.img,item.marca,item.precio,item.cantidad,gyms[data.index])"
+                    class="button button-positive button-block ">
+              Comprar
+            </button>
+          </div-->
+        </ion-item>
+      </div>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
