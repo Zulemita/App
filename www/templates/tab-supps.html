@@ -3,14 +3,7 @@
     <button class="button button-icon button-clear ion-log-out" ng-click="logout()">
     </button>
   </ion-nav-buttons>
-  <ion-content>
-    <div class="list list-inset">
-      <label class="item item-input item-select">
-        <div class="input-label">Gym</div>
-	<select ng-model="data.index" ng-options="gyms.indexOf(item) as item for item in gyms">
-        </select>
-      </label>
-    </div>
+  <ion-content> 
     <ion-list>
       <div ng-repeat="group in groups">
         <ion-item class="item-stable"
@@ -30,7 +23,7 @@
               {{item.marca}}<br/>
               Peso: {{item.peso}}<br/>
               Precio: ${{item.precio}}
-              <input type="number" ng-model="item.cantidad" min="0" max="10">
+              <input type="number" ng-model="item.cantidad" min="0">
             </div>
           </div>
           <div class="col-md-2">

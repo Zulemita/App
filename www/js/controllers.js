@@ -1,12 +1,12 @@
 angular.module('gym2go.controllers', [])
 
-    .controller('GymsCtrl', function ($scope) {
+    .controller('GymsCtrl', function($scope) {
 
     })
-    .controller('CatCtrl', function ($scope, $state) {
+    .controller('CatCtrl', function($scope, $state) {
         $scope.groups = [];
-        $scope.compras={};
-        $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
+        $scope.compras = {};
+        $scope.gyms = ["McGym", "Fiuba", "Belgrano", "Independencia", "San Telmo"];
         $scope.data = {};
         $scope.data.index = 1;
         //global variable shared between different pages.
@@ -32,7 +32,7 @@ angular.module('gym2go.controllers', [])
          * if given group is the selected group, deselect it
          * else, select the given group
          */
-        $scope.toggleGroup = function (group) {
+        $scope.toggleGroup = function(group) {
             if ($scope.isGroupShown(group)) {
                 $scope.shownGroup = null;
             } else {
@@ -40,16 +40,16 @@ angular.module('gym2go.controllers', [])
             }
             $state.go('tab.supps');
         };
-        $scope.isGroupShown = function (group) {
+        $scope.isGroupShown = function(group) {
             return $scope.shownGroup === group;
         };
 
     })
 
-    .controller('NewSalesCtrl', function ($scope, $state) {
+    .controller('NewSalesCtrl', function($scope, $state) {
         $scope.groups = [];
-        $scope.compras={};
-        $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
+        $scope.compras = {};
+        $scope.gyms = ["McGym", "Fiuba", "Belgrano", "Independencia", "San Telmo"];
         $scope.data = {};
         $scope.data.index = 1;
         //global variable shared between different pages.
@@ -92,24 +92,24 @@ angular.module('gym2go.controllers', [])
          * if given group is the selected group, deselect it
          * else, select the given group
          */
-        $scope.toggleGroup = function (group) {
+        $scope.toggleGroup = function(group) {
             if ($scope.isGroupShown(group)) {
                 $scope.shownGroup = null;
             } else {
                 $scope.shownGroup = group;
             }
         };
-        $scope.isGroupShown = function (group) {
+        $scope.isGroupShown = function(group) {
             return $scope.shownGroup === group;
         };
 
     })
 
     //Proteinas
-    .controller('SuppsCtrl', function ($scope, Chats, $ionicPopup,sharedCartService) {
+    .controller('SuppsCtrl', function($scope, Chats, $ionicPopup, sharedCartService) {
         $scope.groups = [];
-        $scope.compras={};
-        $scope.gyms = ["McGym","Fiuba","Belgrano","Independencia","San Telmo"];
+        $scope.compras = {};
+        $scope.gyms = ["McGym", "Fiuba", "Belgrano", "Independencia", "San Telmo"];
         $scope.data = {};
         $scope.data.index = 1;
         //global variable shared between different pages.
@@ -196,41 +196,65 @@ angular.module('gym2go.controllers', [])
          * if given group is the selected group, deselect it
          * else, select the given group
          */
-        $scope.toggleGroup = function (group) {
+        $scope.toggleGroup = function(group) {
             if ($scope.isGroupShown(group)) {
                 $scope.shownGroup = null;
             } else {
                 $scope.shownGroup = group;
             }
         };
-        $scope.isGroupShown = function (group) {
+        $scope.isGroupShown = function(group) {
             return $scope.shownGroup === group;
         };
 
         //add to cart function
-        $scope.addToCart = function (id, image, name, price, quantity,gym) {
+        $scope.addToCart = function(id, image, name, price, quantity, gym) {
             $ionicPopup.confirm({
-                title: 'Confirmar Compra',
-                template: '<div><p>' + name + '</p><strong>Precio: $' + price + '</strong></div>',
-                okText: 'Continuar',
-                cancelText: 'Cancelar'
-            })
+                    title: 'Confirmar Compra',
+                    template: '<div><p>' + name + '</p><strong>Precio: $' + price + '</strong></div>',
+                    okText: 'Continuar',
+                    cancelText: 'Cancelar'
+                })
                 .then(function(confirmed) {
                     if (confirmed) {
                         // function cart.add is declared in services.js
-                        cart.add(id, "img/Barcode.jpg", name, price, quantity,gym,"","","");
+                        cart.add(id, image, name, price, quantity, gym, "", "", "");
                     }
                 })
         };
     })
 
-    .controller('CartCtrl', function ($scope, $stateParams, $ionicPopup, sharedCartService) {
+    .controller('CartCtrl', function($scope, $stateParams, $ionicPopup, sharedCartService) {
         // Loads the '$scope variable' cart i.e. 'HTML variable'
-        $scope.$on('$stateChangeSuccess', function () {
+        $scope.$on('$stateChangeSuccess', function() {
             $scope.cart = sharedCartService.cart;
             $scope.total_qty = sharedCartService.total_qty;
             $scope.total_amount = sharedCartService.total_amount;
         });
+
+        //remove function
+        $scope.removeFromCart = function(c_id) {
+            $scope.cart.drop(c_id); // deletes the product from cart. 
+
+            // dynamically update the current $scope data.
+            $scope.total_qty = sharedCartService.total_qty;
+            $scope.total_amount = sharedCartService.total_amount;
+
+        };
+
+        // increments the qty
+        $scope.inc = function(c_id) {
+            $scope.cart.increment(c_id);
+            $scope.total_qty = sharedCartService.total_qty;
+            $scope.total_amount = sharedCartService.total_amount;
+        };
+
+        // decrements the qty
+        $scope.dec = function(c_id) {
+            $scope.cart.decrement(c_id);
+            $scope.total_qty = sharedCartService.total_qty;
+            $scope.total_amount = sharedCartService.total_amount;
+        };
 
         $scope.expandItem = function(item) {
             if ($scope.isItemExpanded(item)) {
@@ -247,29 +271,28 @@ angular.module('gym2go.controllers', [])
         }
     })
 
-    .controller('LoginCtrl', function ($scope, $state) {
-        $scope.doLogin = function () {
+    .controller('LoginCtrl', function($scope, $state) {
+        $scope.doLogin = function() {
             $state.go("tab.gyms")
         };
     })
 
-    .controller('AppCtrl', function ($scope, $state) {
-        $scope.logout = function () {
+    .controller('AppCtrl', function($scope, $state) {
+        $scope.logout = function() {
             $state.go("login")
         };
     })
 
-    .controller('SingleGymCtrl', function ($scope, $state, $ionicPopup, ionicDatePicker) {
-        $scope.goBack = function () {
+    .controller('SingleGymCtrl', function($scope, $state, $ionicPopup, ionicDatePicker) {
+        $scope.goBack = function() {
             $state.go("tab.gyms")
         };
 
-        $scope.goToPersonalTrainerList = function () {
+        $scope.goToPersonalTrainerList = function() {
             $state.go("tab.personalTrainerList")
         }
 
-        $scope.activities = [
-            {
+        $scope.activities = [{
                 name: "Pase Gimnasio",
                 price: "$50"
             },
@@ -284,24 +307,24 @@ angular.module('gym2go.controllers', [])
 
         ];
 
-        $scope.toggleActivity = function (activity) {
+        $scope.toggleActivity = function(activity) {
             if ($scope.isActivityShown(activity)) {
                 $scope.shownActivity = null;
             } else {
                 $scope.shownActivity = activity;
             }
         };
-        $scope.isActivityShown = function (activity) {
+        $scope.isActivityShown = function(activity) {
             return $scope.shownActivity === activity;
         };
 
-        $scope.addActivity = function (activity) {
+        $scope.addActivity = function(activity) {
             $ionicPopup.confirm({
-                title: 'Confirmar selección',
-                template: '<div><p><strong>' + activity.name + '</strong></p>Precio: ' + activity.price + '<br>Fecha: ' + $scope.selectedDate + '<br>Hora: 19:00hs</div>',
-                okText: 'Continuar',
-                cancelText: 'Cancelar'
-            })
+                    title: 'Confirmar selección',
+                    template: '<div><p><strong>' + activity.name + '</strong></p>Precio: ' + activity.price + '<br>Fecha: ' + $scope.selectedDate + '<br>Hora: 19:00hs</div>',
+                    okText: 'Continuar',
+                    cancelText: 'Cancelar'
+                })
                 .then(function(confirmed) {
                     if (confirmed) {
                         $scope.goToPersonalTrainerList();
@@ -310,7 +333,7 @@ angular.module('gym2go.controllers', [])
         };
 
         var ipObj1 = {
-            callback: function (val) {  //Mandatory
+            callback: function(val) { //Mandatory
                 console.log('Return value from the datepicker popup is : ' + val, new Date(val));
                 var date = new Date(val);
 
@@ -318,35 +341,35 @@ angular.module('gym2go.controllers', [])
                 var month = date.getMonth() + 1;
                 var year = date.getFullYear();
 
-                $scope.selectedDate = day+'/'+month+'/'+year;;
+                $scope.selectedDate = day + '/' + month + '/' + year;;
             },
             from: new Date(2017, 10, 23), //Optional
             to: new Date(2019, 10, 30), //Optional
-            inputDate: new Date(),      //Optional
+            inputDate: new Date(), //Optional
             titleLabel: 'Select a Date',
-            mondayFirst: true,          //Optional
-            disableWeekdays: [0],       //Optional
-            closeOnSelect: false,       //Optional
+            mondayFirst: true, //Optional
+            disableWeekdays: [0], //Optional
+            closeOnSelect: false, //Optional
             templateType: 'popup',
             setLabel: 'Elegir',
             closeLabel: 'Cerrar'
         };
 
-        $scope.openDatePicker = function(){
+        $scope.openDatePicker = function() {
             ionicDatePicker.openDatePicker(ipObj1);
         };
 
     })
 
-//Personal Trainers
-    .controller('PersonalCtrl', function ($scope, $ionicPopup, $state) {
+    //Personal Trainers
+    .controller('PersonalCtrl', function($scope, $ionicPopup, $state) {
         $scope.trainers = [{
-            name: "Juan Perez",
-            age: "29 años",
-            profileImage: "img/personal1.png",
-            speciality: "Musculación en general",
-            price: 50
-        },
+                name: "Juan Perez",
+                age: "29 años",
+                profileImage: "img/personal1.png",
+                speciality: "Musculación en general",
+                price: 50
+            },
             {
                 name: "Federico Romo",
                 age: "35 años",
@@ -367,18 +390,19 @@ angular.module('gym2go.controllers', [])
                 profileImage: "img/personal4.jpg",
                 speciality: "Musculación en general",
                 price: 50
-            }];
+            }
+        ];
         /*
          * if given group is the selected group, deselect it
          * else, select the given group
          */
-        $scope.addPersonal = function (personal) {
+        $scope.addPersonal = function(personal) {
             $ionicPopup.confirm({
-                title: 'Confirmar selección',
-                template: '<div><p>' + personal.name + '</p><strong>Precio: $' + personal.price + '</strong></div>',
-                okText: 'Continuar',
-                cancelText: 'Cancelar'
-            })
+                    title: 'Confirmar selección',
+                    template: '<div><p>' + personal.name + '</p><strong>Precio: $' + personal.price + '</strong></div>',
+                    okText: 'Continuar',
+                    cancelText: 'Cancelar'
+                })
                 .then(function(confirmed) {
                     if (confirmed) {
                         // TODO - Add redirection to clothes selection screen
@@ -387,7 +411,7 @@ angular.module('gym2go.controllers', [])
                 })
         };
 
-        $scope.goToClothes = function(){
+        $scope.goToClothes = function() {
             $state.go("tab.clothes")
         }
     })
@@ -405,7 +429,7 @@ angular.module('gym2go.controllers', [])
             items: []
         };
         $scope.groups[0].items[0] = {
-            img:"img/shirt-rosa-mujer.jpg",
+            img: "img/shirt-rosa-mujer.jpg",
             marca: "Reebok",
             name: "Remera Dry Fit - Mujer",
             f: true,
@@ -413,7 +437,7 @@ angular.module('gym2go.controllers', [])
             precio: 10
         };
         $scope.groups[0].items[1] = {
-            img:"img/shirt-azul-varon.jpeg",
+            img: "img/shirt-azul-varon.jpeg",
             marca: "Nike",
             name: "Remera Dry Fit - Hombre",
             f: true,
@@ -426,7 +450,7 @@ angular.module('gym2go.controllers', [])
             items: []
         };
         $scope.groups[1].items[0] = {
-            img:"img/admitone-Top-rojo.png",
+            img: "img/admitone-Top-rojo.png",
             marca: "Admitone",
             name: "Top Rojo de tiras finas",
             f: false,
@@ -434,7 +458,7 @@ angular.module('gym2go.controllers', [])
             precio: 10
         };
         $scope.groups[1].items[1] = {
-            img:"img/topNegro.png",
+            img: "img/topNegro.png",
             marca: "Adidas",
             name: "Top Negro",
             f: false,
@@ -447,14 +471,14 @@ angular.module('gym2go.controllers', [])
             items: []
         };
         $scope.groups[2].items[0] = {
-            img:"img/women-short-black.jpg",
+            img: "img/women-short-black.jpg",
             marca: "Nike",
             name: "Short Femenino Negro",
             id: 5,
             precio: 10
         };
         $scope.groups[2].items[1] = {
-            img:"img/short-blakc-men.jpg",
+            img: "img/short-blakc-men.jpg",
             marca: "Nike",
             name: "Short Masculino Negro",
             f: false,
@@ -466,7 +490,7 @@ angular.module('gym2go.controllers', [])
             items: []
         };
         $scope.groups[3].items[0] = {
-            img:"img/calsa-violeta.jpg",
+            img: "img/calsa-violeta.jpg",
             marca: "Reebok",
             name: "Calsa Femenina Violeta",
             f: true,
@@ -474,7 +498,7 @@ angular.module('gym2go.controllers', [])
             precio: 10
         };
         $scope.groups[3].items[1] = {
-            img:"img/calsa-negra-varon.jpg",
+            img: "img/calsa-negra-varon.jpg",
             marca: "Reebok",
             name: "Calsa 3/4 Masculina ",
             f: true,
@@ -496,7 +520,7 @@ angular.module('gym2go.controllers', [])
             return $scope.shownGroup === group;
         };
 
-        $scope.showConfirm = function(ev,item) {
+        $scope.showConfirm = function(ev, item) {
 
             // Appending dialog to document.body to cover sidenav in docs app
             var genero = item.f ? 'una ' : 'un ';
@@ -505,13 +529,13 @@ angular.module('gym2go.controllers', [])
             var confirmPopup = $ionicPopup.confirm({
                 title: '',
                 template: '<div><div> <img ng-src="' + item.img + '" style="width:100%"/> </div> <div>' +
-                ' Desea alquilar ' + genero  + '<b>' + item.name + '</b> para su actividad? </div></div>',
+                    ' Desea alquilar ' + genero + '<b>' + item.name + '</b> para su actividad? </div></div>',
                 okText: 'Alquilar',
                 cancelText: 'Cancelar'
             });
 
             confirmPopup.then(function(res) {
-                if(res) {
+                if (res) {
                     $scope.cantidadAlquilados = $scope.cantidadAlquilados + 1;
                     $scope.totalAlquilados = $scope.totalAlquilados + item.precio;
                     $scope.itemsAlquilados.push(item);
@@ -519,35 +543,37 @@ angular.module('gym2go.controllers', [])
             });
         };
 
-        $scope.continue = function(){
+        $scope.continue = function() {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Comprar activdad',
                 template: 'Desea finalizar la transaccion con la actividad?',
                 okText: 'Comprar',
                 cancelText: 'Cancelar'
             });
-            confirmPopup.then(function(res){
-                if(res){
+            confirmPopup.then(function(res) {
+                if (res) {
                     $ionicHistory.clearHistory();
-                    $state.go('tab.cart', {fromActivity: true});
+                    $state.go('tab.cart', {
+                        fromActivity: true
+                    });
                     $scope.itemsAlquilados = [];
                     $scope.cantidadAlquilados = 0;
                     $scope.totalAlquilados = 0;
-                    cart.add(20, "img/Barcode.jpg", "Pase Gimnasio", 120, 1,"Belgrano","Fecha y hora:23/11/2017 a las 19:00hs","Personal trainer:Juan Perez","Ropa:Remera Dry Fit - Hombre / Short Masculino Negro");
+                    cart.add(20, "img/Barcode.jpg", "Pase Gimnasio", 120, 1, "Belgrano", "Fecha y hora:23/11/2017 a las 19:00hs", "Personal trainer:Juan Perez", "Ropa:Remera Dry Fit - Hombre / Short Masculino Negro");
                 }
             })
         }
 
-        $scope.showRented = function(){
+        $scope.showRented = function() {
             var title = ''
             var template = ''
-            if($scope.cantidadAlquilados > 0){
+            if ($scope.cantidadAlquilados > 0) {
 
                 template = '<ion-list><div id="listAlquilados">';
-                for(var i = 0; i < $scope.itemsAlquilados.length; i ++){
+                for (var i = 0; i < $scope.itemsAlquilados.length; i++) {
                     var item = $scope.itemsAlquilados[i];
                     template += '<ion-item><img ng-src="' + item.img + '" style="width:100%;height:80%;"/><div class="row"><div class="col-md-6"></div>' +
-                        '<div class="col-md-4"><b>'+ item.name + '</b></div></div></ion-item>';
+                        '<div class="col-md-4"><b>' + item.name + '</b></div></div></ion-item>';
                 }
                 template += '</div></ion-list>';
             } else {
@@ -557,7 +583,7 @@ angular.module('gym2go.controllers', [])
                 title: 'Ya alquilados',
                 template: template
             });
-            alertPopup.then(function(){
+            alertPopup.then(function() {
 
             });
         }
